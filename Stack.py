@@ -2,9 +2,8 @@
 class Item(object):
     def __init__(self, val):
         assert isinstance(val, (int, float)), '%s is not a number!' % val
-
-    self.val = val
-    self.maxVal = None
+        self.val = val
+        self.maxVal = None
 
 
 class MaxStack(object):
@@ -21,13 +20,12 @@ class MaxStack(object):
     def push(self, val):
         item = Item(val)
 
-    if self.isEmpty():
-        item.maxVal = val
-    else:
-        preTop = self.top()
-        item.maxVal = max(preTop.maxVal, val)
-
-    self.items.append(item)
+        if self.isEmpty():
+            item.maxVal = val
+        else:
+            preTop = self.top()
+            item.maxVal = max(preTop.maxVal, val)
+            self.items.append(item)
 
     def pop(self):
         return self.items.pop()
@@ -41,16 +39,13 @@ class MaxStack(object):
 
 s = MaxStack()
 
-print
-s.isEmpty()
+print(s.isEmpty())
+
 for v in (3, 1, 5, 2, 9, 2, 4, 11):
     s.push(v)
-    print
-    'size=%s, max=%s' % (s.size(), s.getMax())
+    print('size=%s, max=%s' % (s.size(), s.getMax()))
 
-print
-'### Remove element from stack...'
+print('### Remove element from stack...')
 while not s.isEmpty():
     s.pop()
-    print
-    'size=%s, max=%s' % (s.size(), s.getMax())
+    print('size=%s, max=%s' % (s.size(), s.getMax()))
